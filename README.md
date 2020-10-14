@@ -28,7 +28,8 @@ Northcoders has hired you and your pair as contractors to deliver a prototype fo
 
 Northcoders' team have given you a list of user stories for the application:
 
- ```As an admin, 
+ ```
+ As an admin, 
 I want to be able to view a list of the students currently on the course.
 ```
 - As an admin, I want to see which block each student is in so that I know where they are in the course.
