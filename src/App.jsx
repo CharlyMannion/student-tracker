@@ -1,12 +1,28 @@
 import React from 'react';
 import './App.css';
+import { Router } from '@reach/router'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import AllStudents from './pages/AllStudents'
+import Blocks from './pages/Blocks'
+import CurrentStudents from './pages/CurrentStudents'
+import Graduates from './pages/Graduates'
+import Home from './pages/Home'
 
-class App extends React.Component {
-    render() {
+function App() {
         return (
-            <h1>Student tracker</h1>
+            <div className="App">
+               <Header />
+               <Router>
+                   <Home path="/"/>
+                   <AllStudents path="/students/all"/>
+                   <Blocks path="/blocks"/>
+                   <CurrentStudents path="/students/current"/>
+                   <Graduates path="/students/graduates"/>
+               </Router>
+               <Footer />
+            </div>
         );
-    }
 };
 
 export default App;
