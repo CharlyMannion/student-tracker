@@ -1,34 +1,30 @@
 import React from 'react';
-import axios from 'axios';
+import {Link} from '@reach/router';
 
-class Blocks extends React.Component {
-    state = {
-        students: [],
-        isLoading: true
-    };
+function Blocks() {
+    return (
+        <div className="Blocks">
+            <h1>This is the homepage</h1>
+            <nav id="button-nav">
+                <Link to="/students/fundamentals">
+                    <button>Fundamentals</button>
+                </Link>
+                <Link to="/students/backend">
+                    <button>Back End</button>
+                </Link>
+                <Link to='/students/frontend'>
+                    <button>Front End</button>
+                </Link>
+                <Link to='/students/projectphase'>
+                    <button>Project Phase</button>
+                </Link>
+                <Link to='/students/graduates'>
+                    <button>View graduates</button>
+                </Link>
+            </nav>
 
-    componentDidMount() {
-        axios.get('https://nc-student-tracker.herokuapp.com/api/students')
-        .then((res) => {
-            console.log(res.data.students);
-            this.setState({
-                students: res.data.students,
-                isLoading: false,
-            });
-        });
-    };
-
-    render() {
-        if (this.state.isLoading) return <p>Students loading...</p>
-        return (
-            <div>
-                <h1>These are all the students</h1>
-                <p>Student 1</p>
-                <p>Student 2</p>
-            </div>
-        );
-    }
-}
-
+        </div>
+    );
+};
 
 export default Blocks;
