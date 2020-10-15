@@ -1,6 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from '@reach/router';
+import styled from 'styled-components';
+const { indicateResits } = require("../utils");
+
+const ResitIndicator = styled.h2`
+color: red;
+`
 
 class Fundamentals extends React.Component {
     state = {
@@ -12,10 +18,25 @@ class Fundamentals extends React.Component {
         axios.get('https://nc-student-tracker.herokuapp.com/api/students?block=fun')
         .then((res) => {
             console.log(res.data.students);
-            this.setState({
-                students: res.data.students,
-                isLoading: false,
+
+            const studentsArr = res.data.students.map(student => {
+                return axios.get(`https://nc-student-tracker.herokuapp.com/api/students/${student._id}`);
             });
+
+            Promise.all(studentsArr)
+            .then((studentData) => {
+                console.log(studentData, "studentData")
+                const studentsWithResit = studentData.map(student => {
+                    console.log(student, "Student");
+                    const resitNumber = indicateResits(student.data.student.blockHistory);
+                    return student.data.student.resitNumber = resitNumber;
+                })
+                console.log(studentsWithResit, "studentsWithResit");
+                this.setState({
+                    students: studentsWithResit,
+                    isLoading: false,
+                });
+            })
         });
     };
 
@@ -26,12 +47,12 @@ class Fundamentals extends React.Component {
                 <h1>These are all the students</h1>
                 <ul>
                     {this.state.students.map((student) => {
-                        console.log(student)
+                        // console.log(student)
                         return (
                             
                             <li>
                                 <Link to={`/students/${student._id}`}>
-                                    <h2>{student.name}</h2>
+                                    <ResitIndicator>{student.name}</ResitIndicator>
                                 </Link>
                             </li>
                         );
