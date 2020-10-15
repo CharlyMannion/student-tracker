@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from '@reach/router';
 
 class AllStudents extends React.Component {
     state = {
@@ -23,8 +24,19 @@ class AllStudents extends React.Component {
         return (
             <div>
                 <h1>These are all the students</h1>
-                <p>Student 1</p>
-                <p>Student 2</p>
+                <ul>
+                    {this.state.students.map((student) => {
+                        console.log(student)
+                        return (
+                            
+                            <li>
+                                <Link to={`/students/${student._id}`}>
+                                    <h2>{student.name}</h2>
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
             </div>
         );
     }

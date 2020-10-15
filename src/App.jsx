@@ -8,6 +8,7 @@ import Blocks from './pages/Blocks'
 import CurrentStudents from './pages/CurrentStudents'
 import Graduates from './pages/Graduates'
 import Home from './pages/Home'
+import IndividualStudent from './pages/IndividualStudent'
 
 function App() {
         return (
@@ -19,6 +20,7 @@ function App() {
                    <Blocks path="/blocks"/>
                    <CurrentStudents path="/students/current"/>
                    <Graduates path="/students/graduates"/>
+                   <IndividualStudent path="/students/:student_id"/>
                </Router>
                <Footer />
             </div>
