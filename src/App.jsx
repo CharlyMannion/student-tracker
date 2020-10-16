@@ -13,7 +13,7 @@ import Fundamentals from './pages/Fundamentals'
 import BackEnd from './pages/BackEnd'
 import FrontEnd from './pages/FrontEnd'
 import ProjectPhase from './pages/ProjectPhase'
-
+import FlashStudent from './pages/FlashStudent';
 
 function App() {
         return (
@@ -30,6 +30,7 @@ function App() {
                    <FrontEnd path="/students/frontend"/>
                    <ProjectPhase path="/students/projectphase"/>
                    <IndividualStudent path="/students/:student_id"/>
+                   <FlashStudent path="/:student_id"/>
                </Router>
                <Footer />
             </div>

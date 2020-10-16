@@ -7,7 +7,7 @@ const {currentBlock, indicateResits} = require('../utils')
 const Resitting = styled.li`
 color:red;`
 
-class IndividualStudent extends React.Component {
+class FlashStudent extends React.Component {
     state = {
         student: {},
         isLoading: true
@@ -24,6 +24,20 @@ class IndividualStudent extends React.Component {
             });
         });
     };
+    
+    componentDidUpdate(prevProps) {
+        console.log('new props', this.props)
+        if(prevProps.student_id !== this.props.student_id) {
+            console.log('making the request');
+            axios.get(`https://nc-student-tracker.herokuapp.com/api/students/${this.props.student_id}`)
+            .then((res) => {
+                this.setState({
+                    student: res.data.student,
+                })
+            })
+        }
+    }
+	
 	
     render() {
         if (this.state.isLoading) return <p>Students loading...</p>
@@ -43,4 +57,4 @@ class IndividualStudent extends React.Component {
 }
 
 
-export default IndividualStudent;
+export default FlashStudent;

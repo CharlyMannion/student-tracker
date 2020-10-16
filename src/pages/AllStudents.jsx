@@ -1,7 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import { Router } from '@reach/router'
 import {Link} from '@reach/router';
 import StudentAdder from "../components/StudentAdder"
+import ToggleView from '../components/ToggleView'
+import FlashStudent from './FlashStudent';
+// import IndividualStudent from './IndividualStudent';
 
 class AllStudents extends React.Component {
     state = {
@@ -39,15 +43,23 @@ class AllStudents extends React.Component {
                     {this.state.students.map((student) => {
                         console.log(student)
                         return (
-                            
                             <li>
                                 <Link to={`/students/${student._id}`}>
                                     <h2>{student.name}</h2>
                                 </Link>
+                                <Link to={`/${student._id}`}>
+                                    <h2>Quick View</h2>
+                                </Link>
+                                <p>Starting cohort: {student.startingCohort}</p>
                             </li>
                         );
                     })}
                 </ul>
+                <ToggleView>
+                    <Router>
+                        <FlashStudent path='./students/:student_id' />
+                    </Router>
+                </ToggleView>
             </div>
         );
     }
