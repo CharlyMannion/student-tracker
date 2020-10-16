@@ -1,12 +1,18 @@
 import React from 'react';
 import axios from 'axios';
-const currentBlock = require('../utils')
+import styled from 'styled-components'
+const {currentBlock, indicateResits} = require('../utils')
+
+
+const Resitting = styled.li`
+color:red;`
 
 class IndividualStudent extends React.Component {
     state = {
         student: {},
         isLoading: true
     };
+
 
     componentDidMount() {
 		console.log(this.props)
@@ -30,6 +36,7 @@ class IndividualStudent extends React.Component {
 				<ul>
 					<li>Starting cohort: {this.state.student.startingCohort}</li>
 					<li>Current status: {currentBlock(this.state.student.blockHistory)}</li>
+                    <Resitting>{indicateResits(this.state.student.blockHistory)}</Resitting>
 				</ul>
                 
             </div>

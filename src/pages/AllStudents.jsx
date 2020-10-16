@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from '@reach/router';
+import StudentAdder from "../components/StudentAdder"
 
 class AllStudents extends React.Component {
     state = {
@@ -19,11 +20,21 @@ class AllStudents extends React.Component {
         });
     };
 
+    addStudent = (student) => {
+        this.setState((prevState) => {
+            const newStudents = [...prevState.students, student];
+            return {
+                students: newStudents
+            };
+        });
+    };
+
     render() {
         if (this.state.isLoading) return <p>Students loading...</p>
         return (
             <div>
                 <h1>These are all the students</h1>
+                <StudentAdder addStudent={this.addStudent}/>
                 <ul>
                     {this.state.students.map((student) => {
                         console.log(student)

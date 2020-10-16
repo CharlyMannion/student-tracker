@@ -5,7 +5,9 @@ const currentBlock = (blockHistory) => {
 const indicateResits = (blockHistory) => {
     const currentBlock = blockHistory[blockHistory.length - 1].slug;
     const filteredHistory = [...blockHistory].filter(element => element.slug === currentBlock);
-    return filteredHistory.length;
+    if(filteredHistory.length > 1){
+        return "resiting"
+    }
 
 }
 

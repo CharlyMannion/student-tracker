@@ -24,6 +24,7 @@ class CurrentStudents extends React.Component {
         return (
             <div>
                 <h1>These are all the current students</h1>
+                
                 <ul>
                     {this.state.students.map((student) => {
                         console.log(student)
@@ -37,6 +38,7 @@ class CurrentStudents extends React.Component {
                         );
                     })}
                 </ul>
+                
             </div>
         );
     }
